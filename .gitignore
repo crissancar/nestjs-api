@@ -60,6 +60,7 @@ artifacts/postgres/*
 !artifacts/coverage/.gitkeep
 !artifacts/db/.gitkeep
 !artifacts/dist/.gitkeep
+!artifacts/swagger/.gitkeep
 !artifacts/documentation/.gitkeep
 !artifacts/public/.gitkeep
 !artifacts/tmp/.gitkeep
