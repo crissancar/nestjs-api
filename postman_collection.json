@@ -1,0 +1,579 @@
+{
+	"info": {
+		"_postman_id": "3e8d4228-7e7e-4016-953f-3994e79ab55c",
+		"name": "Skeleton - API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "27642326"
+	},
+	"item": [
+		{
+			"name": "Auth",
+			"item": [
+				{
+					"name": "Login",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jsonData = pm.response.json();\r",
+									"pm.environment.set(\"REFRESH_TOKEN\", jsonData.data.refreshToken);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "apikey",
+							"apikey": [
+								{
+									"key": "value",
+									"value": "{{API_KEY_LOCAL_GENERAL}}",
+									"type": "string"
+								},
+								{
+									"key": "key",
+									"value": "Authorization",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "x-forwarded-for",
+								"value": "{{USER_IP}}",
+								"type": "default",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"email\": \"admin@admin.com\",\r\n  \"password\": \"admin1!\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{LOCAL}}/auth/login",
+							"host": [
+								"{{LOCAL}}"
+							],
+							"path": [
+								"auth",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Refresh token",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jsonData = pm.response.json();\r",
+									"pm.environment.set(\"ACCESS_TOKEN\", jsonData.data.accessToken);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{REFRESH_TOKEN}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{LOCAL}}/auth/refresh-token",
+							"host": [
+								"{{LOCAL}}"
+							],
+							"path": [
+								"auth",
+								"refresh-token"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Users",
+			"item": [
+				{
+					"name": "Create",
+					"request": {
+						"auth": {
+							"type": "apikey",
+							"apikey": [
+								{
+									"key": "value",
+									"value": "{{API_KEY_LOCAL_GENERAL}}",
+									"type": "string"
+								},
+								{
+									"key": "key",
+									"value": "Authorization",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "x-forwarded-for",
+								"value": "{{USER_IP}}",
+								"type": "default",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"User\",\r\n    \"email\": \"user@mail.es\",\r\n    \"password\": \"strongPassword\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{LOCAL}}/users",
+							"host": [
+								"{{LOCAL}}"
+							],
+							"path": [
+								"users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{ACCESS_TOKEN}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Update\",\r\n    \"email\": \"user.updated@mail.es\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{LOCAL}}/users/19d5b439-c85c-4b23-b2bb-8153068ea30f",
+							"host": [
+								"{{LOCAL}}"
+							],
+							"path": [
+								"users",
+								"19d5b439-c85c-4b23-b2bb-8153068ea30f"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update password",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{ACCESS_TOKEN}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"oldPassword\": \"strongPassword\",\r\n    \"password\": \"newStrongPassword\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{LOCAL}}/users/b0720f68-7575-4e71-8174-0cf603dfc4c5/update-password",
+							"host": [
+								"{{LOCAL}}"
+							],
+							"path": [
+								"users",
+								"b0720f68-7575-4e71-8174-0cf603dfc4c5",
+								"update-password"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Find by id",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{ACCESS_TOKEN}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{LOCAL}}/users/feb27195-4c1c-4776-a4ed-de52c5c49f52",
+							"host": [
+								"{{LOCAL}}"
+							],
+							"path": [
+								"users",
+								"feb27195-4c1c-4776-a4ed-de52c5c49f52"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Find by criteria",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{ACCESS_TOKEN}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{LOCAL}}/users/?sortOrder=ASC&take=0&page=1",
+							"host": [
+								"{{LOCAL}}"
+							],
+							"path": [
+								"users",
+								""
+							],
+							"query": [
+								{
+									"key": "email",
+									"value": "admin@admin.com",
+									"disabled": true
+								},
+								{
+									"key": "name",
+									"value": "Admin",
+									"disabled": true
+								},
+								{
+									"key": "keyword",
+									"value": "ad",
+									"disabled": true
+								},
+								{
+									"key": "sortName",
+									"value": "A",
+									"disabled": true
+								},
+								{
+									"key": "sortColumn",
+									"value": "name",
+									"disabled": true
+								},
+								{
+									"key": "sortOrder",
+									"value": "ASC"
+								},
+								{
+									"key": "take",
+									"value": "0"
+								},
+								{
+									"key": "page",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{ACCESS_TOKEN}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{LOCAL}}/users/feb27195-4c1c-4776-a4ed-de52c5c49f52",
+							"host": [
+								"{{LOCAL}}"
+							],
+							"path": [
+								"users",
+								"feb27195-4c1c-4776-a4ed-de52c5c49f52"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Soft delete",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{ACCESS_TOKEN}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{LOCAL}}/users/soft-delete/a1b369a4-36ac-4e01-8e05-1f8c0652e66a",
+							"host": [
+								"{{LOCAL}}"
+							],
+							"path": [
+								"users",
+								"soft-delete",
+								"a1b369a4-36ac-4e01-8e05-1f8c0652e66a"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Policies",
+			"item": [
+				{
+					"name": "Find by criteria",
+					"request": {
+						"auth": {
+							"type": "apikey",
+							"apikey": [
+								{
+									"key": "value",
+									"value": "{{API_KEY_LOCAL_GENERAL}}",
+									"type": "string"
+								},
+								{
+									"key": "key",
+									"value": "Authorization",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{LOCAL}}/policies?take=0&page=1",
+							"host": [
+								"{{LOCAL}}"
+							],
+							"path": [
+								"policies"
+							],
+							"query": [
+								{
+									"key": "type",
+									"value": "TERMS_AND_CONDITIONS",
+									"disabled": true
+								},
+								{
+									"key": "language",
+									"value": "EN",
+									"disabled": true
+								},
+								{
+									"key": "sortColumn",
+									"value": "title",
+									"disabled": true
+								},
+								{
+									"key": "sortOrder",
+									"value": "ASC",
+									"disabled": true
+								},
+								{
+									"key": "take",
+									"value": "0"
+								},
+								{
+									"key": "page",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "FAQs",
+			"item": [
+				{
+					"name": "Find by criteria",
+					"request": {
+						"auth": {
+							"type": "apikey",
+							"apikey": [
+								{
+									"key": "value",
+									"value": "{{API_KEY_LOCAL_GENERAL}}",
+									"type": "string"
+								},
+								{
+									"key": "key",
+									"value": "Authorization",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{LOCAL}}/faqs?take=0&page=1",
+							"host": [
+								"{{LOCAL}}"
+							],
+							"path": [
+								"faqs"
+							],
+							"query": [
+								{
+									"key": "language",
+									"value": "EN",
+									"disabled": true
+								},
+								{
+									"key": "sortColumn",
+									"value": "title",
+									"disabled": true
+								},
+								{
+									"key": "sortOrder",
+									"value": "ASC",
+									"disabled": true
+								},
+								{
+									"key": "take",
+									"value": "0"
+								},
+								{
+									"key": "page",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Swagger",
+			"item": [
+				{
+					"name": "Get swagger file",
+					"request": {
+						"auth": {
+							"type": "apikey",
+							"apikey": [
+								{
+									"key": "value",
+									"value": "{{API_KEY_LOCAL_ADMIN}}",
+									"type": "string"
+								},
+								{
+									"key": "key",
+									"value": "Authorization",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{LOCAL}}/swagger",
+							"host": [
+								"{{LOCAL}}"
+							],
+							"path": [
+								"swagger"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Welcome",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{LOCAL}}/",
+					"host": [
+						"{{LOCAL}}"
+					],
+					"path": [
+						""
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
