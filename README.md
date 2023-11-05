@@ -18,7 +18,7 @@
 </div>
 
 <!-- TABLE OF CONTENTS -->
-## 📝 Table of Contents
+## Table of Contents
 
 * [Technologies and skills](#technologies-and-skills)
 * [Getting Started](#getting-started)
@@ -33,7 +33,7 @@
 * [Documentation](#documentation)
 
 <!-- Technologies -->
-## 💥 Technologies and skills
+## Technologies and skills
 As **technologies and tools**, this skeleton API uses:
 - **NestJS** as development framework
 - **PostgreSQL** as database
@@ -48,12 +48,13 @@ As **skills and best practices**, this skeleton API uses:
 - **Clean Code**
 - **SOLID**
 - **Design Patterns**
+- **Testing strategy** with acceptance, unit and integration tests
 - **Modular monolith**
 
 *All this makes, for example, that the migration to hexagonal architecture has low cost 💪*
 
 <!-- GETTING STARTED -->
-## 🚀 Getting Started
+## Getting Started
 
 This is an instructions on setting up the project locally.
 
@@ -209,11 +210,11 @@ $ npm run test:integration:sync
 ```
 
 <!-- POSTMAN -->
-## 💣 Postman
+## Postman
 To use the **API endpoints** with **Postman**, you need to build the [Backoffice](https://github.com/crissancar/nestjs-skeleton-backoffice) and create an **API Key** with *general* or *admin* audience.
 
 To get the **Postman collection and environment**, download the files *postman_collection.json* and *postman_environment.json* from the root directory.
 
 <!-- DOCUMENTATION -->
-## 📖 Documentation
+## Documentation
 -  [NestJS](https://docs.nestjs.com/)
