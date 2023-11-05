@@ -10,7 +10,7 @@ import { ApiKeyAudiences } from './modules/api-keys/enums/api-key-audiences.enum
 import { sharedConfigSwagger } from './modules/shared/config/swagger/shared-config.swagger';
 import { ApiKeyAuthentication } from './modules/shared/decorators/api-key-authentication.decorator';
 
-const { project } = config;
+const { project, PWD } = config;
 const { security } = sharedConfigSwagger;
 
 const logger = new Logger('AppController');
@@ -42,7 +42,7 @@ export class AppController {
 	getSwaggerFile(): FetchedDocument {
 		logger.log('Request received to get swagger json');
 
-		const swaggerPath = path.join(process.cwd(), 'artifacts/swagger', 'swagger.json');
+		const swaggerPath = path.join(`${PWD}`, 'artifacts/swagger', 'swagger.json');
 
 		const file = fs.readFileSync(swaggerPath, 'utf-8');
 
