@@ -30,6 +30,7 @@
     * [Running the app](#running-the-app)
     * [Running the tests (async)](#running-the-tests-async)
     * [Running the tests (sync)](#running-the-tests-sync)
+* [Postman](#postman)
 * [Documentation](#documentation)
 
 <!-- Technologies -->
