@@ -211,10 +211,8 @@ $ npm run test:integration:sync
 
 <!-- POSTMAN -->
 ## Postman
-To use the **API endpoints** with **Postman**, you need to build the [Backoffice](https://github.com/crissancar/nestjs-skeleton-backoffice) and create an **API Key** with *general* or *admin* audience.
-
 To get the **Postman collection and environment**, download the files *postman_collection.json* and *postman_environment.json* from the root directory.
 
 <!-- DOCUMENTATION -->
 ## Documentation
--  [NestJS](https://docs.nestjs.com/)
+When the app is running, the **endpoints documentation** is available on `http://localhost:9977/documentation`
