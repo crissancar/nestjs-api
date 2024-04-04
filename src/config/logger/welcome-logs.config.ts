@@ -5,7 +5,7 @@ import * as process from 'process';
 import { LoggerFactory } from '../../app/modules/shared/services/logger-factory.service';
 import { config } from '../app';
 
-const { api, project, sentry, env } = config;
+const { api, project, env } = config;
 
 const logger = LoggerFactory.create('');
 
@@ -16,12 +16,10 @@ export class WelcomeLogs {
 	static pid = pid;
 	static environment = config.environment;
 	static PWD = config.PWD;
-	static sentryEnabled = String(sentry.enabled);
 	static showEnv = env.show;
 
 	static run(): void {
-		logger.log(`${this.projectName}'s magic happens at ${this.apiUrl}/${this.apiVersion}`);
-		logger.log(`Sentry enabled: ${this.sentryEnabled}`);
+		logger.log(`${this.projectName} running at ${this.apiUrl}/${this.apiVersion}`);
 		logger.log(`Environment: ${this.environment}`);
 		logger.log(`PID: ${this.pid || 'not forked'}`);
 		logger.log(`Root: ${this.PWD}`);

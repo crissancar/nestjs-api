@@ -1,12 +1,9 @@
-import { DocumentBuilder, OpenAPIObject, SwaggerCustomOptions } from '@nestjs/swagger';
-import { writeFileSync } from 'fs';
-import { mkdirp } from 'mkdirp';
-import path from 'path';
+import { DocumentBuilder, OpenAPIObject } from '@nestjs/swagger';
 
 import { config } from '../app';
 import { RedocOptions } from './redoc-options.interface';
 
-const { api, project, PWD } = config;
+const { api, project } = config;
 
 export class SwaggerConfig {
 	static documentBuilder(): Omit<OpenAPIObject, 'paths'> {
@@ -18,16 +15,11 @@ export class SwaggerConfig {
 			.addServer('/v1/', 'v1')
 			.addApiKey({ type: 'apiKey', in: 'header', name: 'Authorization' }, 'ApiKey')
 			.addBearerAuth()
+			.addTag('Auth', 'Authentication use cases')
+			.addTag('FAQs', 'FAQs use cases')
+			.addTag('Policies', 'Policies use cases')
+			.addTag('Users', 'Users use cases')
 			.build();
-	}
-
-	static customOptions(): SwaggerCustomOptions {
-		return {
-			swaggerOptions: {
-				tagsSorter: 'alpha',
-				operationsSorter: 'alpha',
-			},
-		};
 	}
 
 	static redocOptions(): RedocOptions {
@@ -48,13 +40,5 @@ export class SwaggerConfig {
 
 	static path(): string {
 		return 'documentation';
-	}
-
-	static saveDocument(document: OpenAPIObject): void {
-		mkdirp.sync(`${PWD}/artifacts/swagger`);
-
-		const outputPath = path.resolve(`${PWD}`, 'artifacts/swagger', 'swagger.json');
-
-		writeFileSync(outputPath, JSON.stringify(document), { encoding: 'utf8' });
 	}
 }
