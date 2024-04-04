@@ -1,3 +1,4 @@
+import { RedocModule } from '@jozefazz/nestjs-redoc';
 import { INestApplication } from '@nestjs/common';
 import { NestFactory } from '@nestjs/core';
 import { SwaggerModule } from '@nestjs/swagger';
@@ -28,7 +29,7 @@ async function bootstrap(): Promise<void> {
 
 	// Set Swagger
 	if (api.documentation.enabled) {
-		setSwagger(app);
+		await setSwagger(app);
 	}
 
 	// Set Sendgrid
@@ -69,19 +70,14 @@ async function bootstrap(): Promise<void> {
 	WelcomeLogs.run();
 }
 
-function setSwagger(app: INestApplication): void {
+async function setSwagger(app: INestApplication): Promise<void> {
 	const config = SwaggerConfig.documentBuilder();
 
 	const document = SwaggerModule.createDocument(app, config);
 
-	SwaggerConfig.saveDocument(document);
+	const redocOptions = SwaggerConfig.redocOptions();
 
-	if (!api.documentation.redoc) {
-		const path = SwaggerConfig.path();
-		const customOptions = SwaggerConfig.customOptions();
-
-		SwaggerModule.setup(path, app, document, customOptions);
-	}
+	await RedocModule.setup('documentation', app, document, redocOptions);
 }
 
 function setSentry(app: INestApplication): void {

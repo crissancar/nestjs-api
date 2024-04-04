@@ -1,5 +1,4 @@
 export const documentationConfig = {
-	enabled: false,
-	redoc: true,
+	enabled: true,
 	url: null as string,
 };

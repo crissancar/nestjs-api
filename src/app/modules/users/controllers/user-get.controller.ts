@@ -36,7 +36,7 @@ export class UserGetController {
 	}
 
 	@FindUsersByCriteriaSwagger()
-	// @EndpointAuthentication(UserAudiences.ADMIN, UserAudiences.GENERAL)
+	@EndpointAuthentication(UserAudiences.ADMIN, UserAudiences.GENERAL)
 	@Get()
 	async findByCriteria(
 		@Query() request: FindUsersByCriteriaRequest,
