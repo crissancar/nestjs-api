@@ -46,8 +46,6 @@ As **skills and best practices**, this skeleton API uses:
 - **Testing strategy** with acceptance, unit and integration tests
 - **Modular monolith**
 
-*All this makes, for example, that the migration to hexagonal architecture has low cost 💪*
-
 <!-- GETTING STARTED -->
 ## Getting Started
 
@@ -58,17 +56,6 @@ Have **node** and **nvm** installed. Use version **18**.
 ```bash
 $ nvm use 18.16.0
 ```
-Install **make** (optional)
-```bash
-$ apt-get update
-```
-```bash
-$ apt-get install make
-```
-_or_
-```bash
-$ apt-get install --reinstall make
-```
 
 ### Installation
 
@@ -78,10 +65,6 @@ $ git clone https://github.com/crissancar/nestjs-skeleton-api.git
 ```
 2. Install dependencies
 ```bash
-$ make deps
-```
-_or_
-```bash
 $ npm install
 ```
 
@@ -89,49 +72,27 @@ $ npm install
 Create an `.env` and `.env.test` files in the root directory *(check `.env.example` and `.env.test.example` files)*
 
 ### Infrastructure
-
-```bash
-$ make start_infrastructure
-```
-_or_
 ```bash
 $ npm run docker:env
 ```
 
 ### Database
-
 1. Connect to postgres with `pgAdmin` through the URL `http://localhost:5050` or your `IDE` and create the databases with names `skeleton-api` and `skeleton-api-test`
 2. Run migrations
     1. API database migrations
-        ```bash
-        $ make migrations
-        ```
-        _or_
         ```bash
         $ npm run typeorm:migration:run
         ```
     2. Test database migrations
         ```bash
-        $ make migrations_tests
-        ```
-        _or_
-        ```bash
         $ npm run typeorm:migration:test:run
         ```
 3. Run seeds
-    ```bash
-    $ make seeds
-    ```
-    _or_
     ```bash
     $ npm run typeorm:seed:run
     ```
 
 ### Running the app
-```bash
-$ make start
-```
-_or_
 ```bash
 $ npm run start:dev
 ```
@@ -139,33 +100,17 @@ $ npm run start:dev
 ### Running the tests (async)
 #### All tests
 ```bash
-$ make tests
-```
-_or_
-```bash
 $ npm run tests
 ```
 #### Acceptance tests
-```bash
-$ make tests
-```
-_or_
 ```bash
 $ npm run test:acceptance
 ```
 #### Unit tests
 ```bash
-$ make tests_unit
-```
-_or_
-```bash
 $ npm run test:unit
 ```
 #### Integration tests
-```bash
-$ make tests_integration
-```
-_or_
 ```bash
 $ npm run test:integration
 ```
@@ -173,33 +118,17 @@ $ npm run test:integration
 ### Running the tests (sync)
 #### All tests
 ```bash
-$ make tests_sync
-```
-_or_
-```bash
 $ npm run tests:sync
 ```
 #### Acceptance tests
-```bash
-$ make tests_acceptance_sync
-```
-_or_
 ```bash
 $ npm run test:acceptance:sync
 ```
 #### Unit tests
 ```bash
-$ make tests_unit_sync
-```
-_or_
-```bash
 $ npm run test:unit:sync
 ```
 #### Integration tests
-```bash
-$ make tests_integration_sync
-```
-_or_
 ```bash
 $ npm run test:integration:sync
 ```
