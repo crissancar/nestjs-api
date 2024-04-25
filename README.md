@@ -1,11 +1,5 @@
 <div align="center">
-  <p>
-    <a href="https://postimg.cc/3W6yhNds">
-      <img src="https://i.postimg.cc/Dyf1qbFw/pngimg-com-skeleton-PNG42640.png">
-    </a>
-  </p>
-
-  <h1>NestJS API skeleton</h1>
+  <h1>NestJS API example</h1>
 
   <p>
     <img src="https://img.shields.io/badge/node.js-6DA55F?style=for-the-badge&logo=node.js&logoColor=white">
