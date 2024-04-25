@@ -1,5 +1,5 @@
 <div align="center">
-  <h1>NestJS API example</h1>
+  <h1>NestJS API</h1>
 
   <p>
     <img src="https://img.shields.io/badge/node.js-6DA55F?style=for-the-badge&logo=node.js&logoColor=white">
@@ -29,7 +29,7 @@
 
 <!-- Technologies -->
 ## Technologies and skills
-As **technologies and tools**, this skeleton API uses:
+As **technologies and tools**, this project uses:
 - **NestJS** as development framework
 - **PostgreSQL** as database
 - **Jest** as testing tool
@@ -39,7 +39,7 @@ As **technologies and tools**, this skeleton API uses:
 - **Grafana** as metrics manager
 - **Grafana Loki** as log manager
 
-As **skills and best practices**, this skeleton API uses:
+As **skills and best practices**, this project uses:
 - **Clean Code**
 - **SOLID**
 - **Design Patterns**
@@ -61,7 +61,7 @@ $ nvm use 18.16.0
 
 1. Clone repository
 ```bash
-$ git clone https://github.com/crissancar/nestjs-skeleton-api.git
+$ git clone https://github.com/crissancar/nestjs-api.git
 ```
 2. Install dependencies
 ```bash
@@ -77,7 +77,7 @@ $ npm run docker:env
 ```
 
 ### Database
-1. Connect to postgres with `pgAdmin` through the URL `http://localhost:5050` or your `IDE` and create the databases with names `skeleton-api` and `skeleton-api-test`
+1. Connect to postgres with `pgAdmin` through the URL `http://localhost:5050` or your `IDE` and create the databases with names `nestjs-api` and `nestjs-api-test`
 2. Run migrations
     1. API database migrations
         ```bash
